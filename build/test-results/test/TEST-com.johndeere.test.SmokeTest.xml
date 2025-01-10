@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.johndeere.test.SmokeTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-04T04:12:59" hostname="Gagans-MacBook-Pro-Personal.local" time="0.003">
+  <properties/>
+  <testcase name="contextLoads()" classname="com.johndeere.test.SmokeTest" time="0.003"/>
+  <system-out><![CDATA[2024-12-03T22:12:59.416-06:00  INFO 23956 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.johndeere.test.SmokeTest]: SmokeTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-12-03T22:12:59.416-06:00  INFO 23956 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.johndeere.DemoApplication for test class com.johndeere.test.SmokeTest
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
