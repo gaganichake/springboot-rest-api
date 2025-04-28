@@ -1,12 +1,11 @@
-package com.johndeere.repository;
+package com.examples.repository;
 
-import java.util.List;
-
+import com.examples.resource.Book;
+import com.examples.resource.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 
-import com.johndeere.resource.Book;
-import com.johndeere.resource.Page;
+import java.util.List;
 
 public interface PageRepository extends CrudRepository<Page, Long> {
 

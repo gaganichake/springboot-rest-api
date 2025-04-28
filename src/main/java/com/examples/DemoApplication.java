@@ -1,18 +1,16 @@
-package com.johndeere;
+package com.examples;
 
+import com.examples.repository.BookRepository;
+import com.examples.repository.CustomerRepository;
+import com.examples.repository.PageRepository;
+import com.examples.resource.Book;
+import com.examples.resource.Customer;
+import com.examples.resource.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import com.johndeere.repository.BookRepository;
-import com.johndeere.repository.CustomerRepository;
-import com.johndeere.repository.PageRepository;
-import com.johndeere.resource.Book;
-import com.johndeere.resource.Customer;
-import com.johndeere.resource.Page;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -57,9 +55,7 @@ public class DemoApplication {
 			log.info("Customer found with findByLastName('Ichake')");
 			log.info("--------------------------------------------");
 			// Iterating using Java 8 feature
-			customerRepository.findByLastName("Ichake").forEach(ichake -> {
-				log.info(ichake.toString());
-			});
+			customerRepository.findByLastName("Ichake").forEach(ichake -> log.info(ichake.toString()));
 		    // for (Customer bauer : repository.findByLastName("Bauer")) {
 		    //  log.info(bauer.toString());
 		    // 

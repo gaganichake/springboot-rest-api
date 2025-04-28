@@ -1,7 +1,7 @@
 package com.johndeere.test;
 
-import com.johndeere.controller.GreetingController;
-import com.johndeere.service.GreetingService;
+import com.examples.controller.GreetingController;
+import com.examples.service.GreetingService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

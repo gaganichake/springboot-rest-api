@@ -1,19 +1,11 @@
-package com.johndeere.controller;
+package com.examples.controller;
+
+import com.examples.repository.CustomerRepository;
+import com.examples.resource.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.johndeere.repository.CustomerRepository;
-import com.johndeere.resource.Customer;
 
 @RestController
 @RequestMapping(path="/customer") //This is optional.

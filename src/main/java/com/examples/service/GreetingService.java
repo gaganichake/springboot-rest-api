@@ -1,4 +1,4 @@
-package com.johndeere.service;
+package com.examples.service;
 
 import org.springframework.stereotype.Service;
 

@@ -1,0 +1,17 @@
+server:
+  servlet:
+    context-path: /api
+spring:
+  application:
+    name: spring-rest-api
+    version: 0.0.1-SNAPSHOT
+    jpa:
+      show-sql: true
+      hibernate:
+        ddl-auto: update
+#    datasource:
+#        url: dbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
+#        username: gagan
+#        password: ThePassword
+#        driver-class-name: com.mysql.cj.jdbc.Driver
+

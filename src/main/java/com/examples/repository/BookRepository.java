@@ -1,8 +1,7 @@
-package com.johndeere.repository;
+package com.examples.repository;
 
+import com.examples.resource.Book;
 import org.springframework.data.repository.CrudRepository;
-
-import com.johndeere.resource.Book;
 
 public interface BookRepository extends CrudRepository<Book, Long> {
 

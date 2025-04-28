@@ -1,26 +1,25 @@
-package com.johndeere.controller;
+package com.examples.controller;
 
+import com.examples.repository.PageRepository;
+import com.examples.resource.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.johndeere.repository.BookRepository;
-import com.johndeere.resource.Book;
-
 @RestController
-@RequestMapping(path = "/book")
-public class BookController {
+@RequestMapping(path = "/page")
+public class PageController {
 
 	@Autowired
-	private BookRepository bookRepository;
+	private PageRepository pageRepository;
 	
 	
 	@RequestMapping(path = "getAll", method = RequestMethod.GET)
 	//@GetMapping("/getAll") // Shortcut
-	public @ResponseBody Iterable<Book> getAllBooks() {
+	public @ResponseBody Iterable<Page> getAllPages() {
 		
-		return bookRepository.findAll();
+		return pageRepository.findAll();
 	}
 }

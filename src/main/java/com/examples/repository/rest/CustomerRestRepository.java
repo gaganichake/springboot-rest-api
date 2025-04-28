@@ -1,6 +1,6 @@
-package com.johndeere.repository.rest;
+package com.examples.repository.rest;
 
-import com.johndeere.resource.Customer;
+import com.examples.resource.Customer;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
@@ -11,6 +11,6 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "customer", path = "restCustomer")
 public interface CustomerRestRepository extends PagingAndSortingRepository<Customer, Long> {
 
-	public List<Customer> findByFirstName(@Param("firstName") String firstName);
+	List<Customer> findByFirstName(@Param("firstName") String firstName);
 	
 }
