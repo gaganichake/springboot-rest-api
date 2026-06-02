@@ -1,7 +1,7 @@
 package com.examples.controller;
 
+import com.examples.model.Customer;
 import com.examples.repository.CustomerRepository;
-import com.examples.resource.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,49 +11,53 @@ import java.util.Optional;
 @RequestMapping(path="/customer") //This is optional.
 public class CustomerController {
 
-	@Autowired
 	private CustomerRepository customerRepository;
+
+	@Autowired // Setter injection
+	public void setCustomerRepository(CustomerRepository customerRepository) {
+		this.customerRepository = customerRepository;
+	}
 	
 	@PostMapping("/add")
 	public @ResponseBody String addNewCustomer(@RequestParam String firstName, @RequestParam String lastName) {
-		
-		Customer customer = new Customer(firstName, lastName);
+
+		com.examples.resource.Customer customer = new com.examples.resource.Customer(firstName, lastName);
 		
 		customerRepository.save(customer);
 		
-		return "SavedSuccessfully";
+		return "Saved Successfully";
 	}
 	
 	@GetMapping("/getAll")
-	  public @ResponseBody Iterable<Customer> getAllUsers() {
+	  public @ResponseBody Iterable<com.examples.resource.Customer> getAllUsers() {
 	    // This returns a JSON or XML with the users
 	    return customerRepository.findAll();
 	  }
 	
 	@PutMapping("replace")
-	public @ResponseBody String replaceCustomer(@RequestParam Customer customer) {
+	public @ResponseBody String replaceCustomer(@RequestBody Customer customer) {
 
-		customerRepository.save(customer);
-		
-		return "ReplacedSuccessfully";
+		Optional<com.examples.resource.Customer> customerOptional =  customerRepository.findById(customer.getId());
+
+		if(customerOptional.isPresent()) {
+			customerRepository.save(customer.replace(customerOptional.get()));
+			return "Replaced Successfully";
+		} else {
+			return "Customer not found";
+		}
 	}
 	
 	@PatchMapping("update")
-	public @ResponseBody String updateCustomer(@RequestParam Customer customerChanges) {
-		
-		
-		Optional<Customer> customerOptional =  customerRepository.findById(customerChanges.getId());
+	public @ResponseBody String updateCustomer(@RequestBody Customer customer) {
+
+		Optional<com.examples.resource.Customer> customerOptional =  customerRepository.findById(customer.getId());
 		
 		if(customerOptional.isPresent()) {
-			
-			Customer customer = customerOptional.get();
-			if(customerChanges.getFirstName() != null) customer.setFirstName(customerChanges.getFirstName());
-			if(customerChanges.getLastName() != null) customer.setLastName(customerChanges.getLastName());
-			
-			customerRepository.save(customerChanges);
+			customerRepository.save(customer.update(customerOptional.get()));
+			return "Updated Successfully";
+		} else {
+			return "Customer not found";
 		}
-		
-		return "ReplacedSuccessfully";
 	}
-	
+
 }

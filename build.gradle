@@ -17,11 +17,11 @@ repositories {
 
 dependencies {
     
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+//    implementation 'org.springframework.boot:spring-boot-starter-web' // Already included with -starter-data-rest
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-    implementation 'com.fasterxml.jackson.core:jackson-core'
-    implementation 'com.fasterxml.jackson.core:jackson-databind'
+//    implementation 'com.fasterxml.jackson.core:jackson-core' // Already included with -starter-data-rest
+//    implementation 'com.fasterxml.jackson.core:jackson-databind' // Already included with -starter-data-rest
     implementation 'com.google.code.gson:gson:2.11.0'
     compileOnly("org.projectlombok:lombok:1.18.38")
     annotationProcessor("org.projectlombok:lombok:1.18.38")
@@ -29,12 +29,12 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-//    testImplementation 'org.springframework:spring-test'
-//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
-//    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.1'
+//    testImplementation 'org.springframework:spring-test' // Already included with spring-boot-starter-test
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1' // Already included with spring-boot-starter-test
+//    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.1' // Already included with spring-boot-starter-test
 //    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    testImplementation 'org.hamcrest:hamcrest:3.0'
-    testImplementation 'org.mockito:mockito-core:5.14.2'
+//    testImplementation 'org.hamcrest:hamcrest:3.0' // Already included with spring-boot-starter-test
+//    testImplementation 'org.mockito:mockito-core:5.14.2' // Already included with spring-boot-starter-test
     testCompileOnly("org.projectlombok:lombok:1.18.38")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.38")
 }

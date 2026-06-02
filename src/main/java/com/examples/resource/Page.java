@@ -23,9 +23,18 @@ public class Page  implements Serializable {
 	private final String content;
 	private final Integer pageNumber;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	// Fetch type is Eager so it proactively load book title when page object is created.
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	// This will create a foreign key book_id in pages table
 	@JoinColumn(name = "book_id", nullable = false)
-	private Book book;
+	private final Book book;
+
+	public Page() {
+        chapter = null;
+        content = null;
+        pageNumber = null;
+		book = null;
+    }
 
 	public Page(String chapter, String content, Integer pageNumber, Book book) {
 		super();
@@ -37,7 +46,12 @@ public class Page  implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Page [id=" + id + ", chapter=" + chapter + ", content=" + content + ", pageNumber=" + pageNumber + "]";
+		return "Page{" +
+				"id=" + id +
+				", chapter='" + chapter + '\'' +
+				", content='" + content + '\'' +
+				", pageNumber=" + pageNumber +
+				", book=" + book + // FetchType.LAZY will cause org.hibernate.LazyInitializationException.
+				'}';
 	}
-
 }

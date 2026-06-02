@@ -19,15 +19,23 @@ public class Customer {
 	@Setter
     private String lastName;
 
+	public Customer() {
+		this.firstName = null;
+		this.lastName = null;
+	}
+
 	public Customer(String firstName, String lastName) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
 
-    @Override
+	@Override
 	public String toString() {
-		return "Customer [Id=" + Id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "Customer{" +
+				"Id=" + Id +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				'}';
 	}
-
 }

@@ -20,13 +20,20 @@ public class VehicleController {
     @Autowired
     VehicleService vehicleService;
 
+    // Create a vehicle with dynamic fields http://localhost:8080/api/vehicle/dynamic/string
+    // Example payload:
+    //    {
+    //        "make" : "Hyundai",
+    //        "model" : "Elantra",
+    //        "price" : "40,0000"
+    //    }
     @PostMapping("/dynamic/string")
     public ResponseEntity<String> createDynamicFieldsString(@RequestBody String jsonString) {
         // Convert the payload to a Vehicle object
         Vehicle vehicle = new Vehicle();
         JsonElement jsonElement = JsonParser.parseString(jsonString);
         if(jsonElement.isJsonObject()) {
-            vehicle.setDynamicFieldsJson(jsonElement.toString());
+            vehicle.setJson(jsonElement.toString());
         }
         if(jsonElement.isJsonArray()) {
             return ResponseEntity.badRequest().body("JSON Array is not supported");
@@ -40,39 +47,46 @@ public class VehicleController {
 
         // Save the vehicle to the database
         vehicleService.createVehicle(vehicle);
-        return ResponseEntity.ok("Created record: " + jsonString);
+        return ResponseEntity.ok(jsonString);
     }
 
+    // Create a vehicle with dynamic fields http://localhost:8080/api/vehicle/dynamic/map
+    // Example payload:
+    //    {
+    //        "make" : "BMW",
+    //        "model" : "X5",
+    //        "price" : "50,0000"
+    //    }
     @PostMapping("/dynamic/map")
-    public ResponseEntity<String> createDynamicFieldsMap(@RequestBody Map<String, Object> payload) {
+    public ResponseEntity<Map<String, Object>> createDynamicFieldsMap(@RequestBody Map<String, Object> payload) {
         // Convert the payload to a Vehicle object
         Vehicle vehicle = new Vehicle();
-        vehicle.setDynamicFieldsMap(payload);
+        vehicle.setMap(payload);
 
         // Save the vehicle to the database
         vehicleService.createVehicle(vehicle);
-        return ResponseEntity.ok("Created record:" + payload);
+        return ResponseEntity.ok(payload);
     }
 
-    // Create a vehicle with dynamic fields http://localhost:8080/api/vehicle/dynamic
+    // Create a vehicle with dynamic fields http://localhost:8080/api/vehicle/dynamic/jsonnode
     // Example payload:
     // {
     //    "make" : "Honda",
     //    "model" : "CR-V",
     //    "price" : "30,0000"
     //}
-    @PostMapping("/dynamic")
-    public ResponseEntity<String> createDynamicFields(@RequestBody JsonNode payload) {
+    @PostMapping("/dynamic/jsonnode")
+    public ResponseEntity<JsonNode> createDynamicFields(@RequestBody JsonNode payload) {
         // Convert the payload to a Vehicle object
         Vehicle vehicle = new Vehicle();
-        vehicle.setDynamicFieldsJsonNode(payload);
+        vehicle.setJsonNode(payload);
 
         // Save the vehicle to the database
         vehicleService.createVehicle(vehicle);
-        return ResponseEntity.ok("Created record: " + payload);
+        return ResponseEntity.ok(payload);
     }
 
-    // Create a vehicle with dynamic fields http://localhost:8080/api/vehicle/dynamic
+    // Replace a vehicle with dynamic fields http://localhost:8080/api/vehicle/dynamic/jsonnode
     // Example payload:
     //    {
     //        "id": "1",
@@ -83,17 +97,17 @@ public class VehicleController {
     //                "year" : "2017"
     //          }
     //    }
-    @PutMapping("/dynamic")
-    public ResponseEntity<String> putDynamicFields(@RequestBody JsonNode payload) {
+    @PutMapping("/dynamic/jsonnode")
+    public ResponseEntity<JsonNode> putDynamicFields(@RequestBody JsonNode payload) {
         // Convert the payload to a Vehicle object
         Vehicle vehicle = new Vehicle();
         vehicle.setId(Long.valueOf(payload.get("id").asText()));
-        vehicle.setDynamicFieldsJsonNode(payload.get("vehicle"));
+        vehicle.setJsonNode(payload.get("vehicle"));
 
         // Save the vehicle to the database
         vehicleService.updateVehicle(vehicle);
 
-        return ResponseEntity.ok("Updated record: " + payload);
+        return ResponseEntity.ok(payload);
     }
 
     // Fetch a vehicle by ID http://localhost:8080/api/vehicle/dynamic?id=1

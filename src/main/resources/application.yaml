@@ -9,9 +9,19 @@ spring:
       show-sql: true
       hibernate:
         ddl-auto: update
+# http://localhost:8080/api/h2-console
+  h2:
+    console:
+      enabled: true
+
 #    datasource:
 #        url: dbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
 #        username: gagan
 #        password: ThePassword
 #        driver-class-name: com.mysql.cj.jdbc.Driver
-
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    com.examples: DEBUG
+#    org.hibernate.orm.jdbc.bind: TRACE

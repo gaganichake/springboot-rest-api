@@ -12,14 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/book")
 public class BookController {
 
-	@Autowired
-	private BookRepository bookRepository;
-	
-	
+	private final BookRepository bookRepository;
+
+	// Use constructor injection if you are not using @Autowired.
+	public BookController(BookRepository bookRepository) {
+		this.bookRepository = bookRepository;
+	}
+
 	@RequestMapping(path = "getAll", method = RequestMethod.GET)
-	//@GetMapping("/getAll") // Shortcut
 	public @ResponseBody Iterable<Book> getAllBooks() {
-		
 		return bookRepository.findAll();
 	}
 }

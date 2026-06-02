@@ -10,4 +10,5 @@ import java.util.List;
 public interface PageRepository extends CrudRepository<Page, Long> {
 
 	List<Page> findByBook(Book book, Sort sort);
+	List<Page> findByBook(Book book);
 }
